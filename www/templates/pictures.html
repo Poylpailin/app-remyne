@@ -1,0 +1,39 @@
+<ion-view class="picturepagevic" view-title="{{vicTitle}}" ng-controller="PictureCtrl">
+  <ion-content on-touch="onTouch()" scroll="{{scrolle}}">
+
+    <div  class="blockmine">
+      <div class="pictures" ng-repeat="picture in pictures | orderBy:'id':true">
+        <div class="informations">
+          <div on-touch="onHold(picture.id)" class="myimage">
+            <div on-touch="onTouch(picture.id)" class="deleterelease">
+            </div>
+            <img ng-src="{{ picture.picture }}">
+
+            <div class="onholdicons" ng-show="isActive[picture.id]">
+              <i ng-click="showMap(picture.id)" class="map ion-location"></i>
+              <i ng-click="removePicture(picture.id)" class="trash ion-trash-a"></i>
+              <i ng-click="sharePicture(picture.id)" class="faceb ion-social-facebook"></i>
+              <div class="toggle" ng-click="toggle(picture.id)" > </div>
+            </div>
+          </div>
+          <!--{{picture.date | amDateFormat:'dddd Do MMMM YYYY, h:mm:ss a'}}-->
+          <span am-time-ago="picture.date"></span>
+          <span style="color: #9f9f9f; font-size: 80%;"><br>{{picture.date | amDateFormat:'Do MMMM YYYY - h:mm:ss a'}}</span>
+          <p>
+            <span style="padding-top: 500px" ng-click="toggle(picture.id)"><img src="img/dot.png"/>
+            </span>
+            <span style="padding-left: 65%" ng-click="sharePicture(picture.id)"><img src="img/fb.png"></span>
+          </p>
+          <p class="hide">Latitude : {{ picture.lat }} - Longitude : {{ picture.lon }}</p>
+
+          <div ng-show="myValue2" id="map-canvas" style="height:100%; width:100%; position:absolute; z-index: 100; top:0;"></div>
+          <div ng-click="hideMap()" ng-show="myValue2" style="height:100%; width:100%; position:absolute; z-index: 1000; top:15px; left:70%"><img src="img/back.png"/></div>
+          <addhideall></addhideall>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <!--<div class="bar bar-footer bar-stable"></div>-->
+</ion-view>
+

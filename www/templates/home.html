@@ -1,0 +1,102 @@
+<ion-view class="homepagevic" view-title="{{vicTitle}}" ng-controller="CameraCtrl">
+
+  <ion-nav-buttons side="left">
+    <a  ng-click="showSettings()" href="#" class="button button-clear button-icon ion-gear-b"></a>
+  </ion-nav-buttons>
+
+  <ion-content scroll="false">
+
+    <div ng-show="showSetting">
+      <div class="showsettings">
+        <div class="subsettings" ng-click="modal.show()">
+          <p> <i class="ion-ios-paper-outline"> </i> Mention légales</p>
+        </div>
+        <div class="subsettingss" ng-click="modall.show()">
+          <p> <i class="ion-information-circled"> </i> Conditions d'utilisation</p>
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="bothimg">
+
+        <!-- Image what -->
+        <div class="item item-image">
+          <img ng-click="takePicture('what')" ng-src="{{ picture.what }}">
+          <i ng-click="choosePictureAlbum('what')" class="ion-image ion-image-what"></i>
+          <i ng-show="showSave.what" ng-click="takePicture('what')" class="ion-ios-refresh trashwhat"></i>
+        </div>
+        <!-- Fin image what -->
+
+        <!-- Logo -->
+        <div class="row separation" ng-hide="showSave.what && showSave.who">
+          <div class="col"></div>
+          <div class="col col-center">
+            <div class="Rremyne">
+              <img class="Rremynelogo" src="img/ricon.png" alt=""/>
+              <i class="ion-checkmark-round validation"></i>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+        <!-- Fin logo -->
+
+        <!-- Bouton de validation -->
+        <div ng-if="showSave.what && showSave.who">
+          <div class="row separation">
+            <div class="col"></div>
+            <div class="col col-center">
+              <div class="Rremyne">
+                <img class="Rremynelogo" ng-click="savePictures()" src="img/validation.png" alt=""/>
+                <i class="ion-checkmark-round validation"></i>
+              </div>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <!-- Fin bouton de validation -->
+
+        <!-- Image who -->
+        <div class="item item-image">
+          <img ng-click="takePicture('who')" ng-src="{{ picture.who }}">
+          <i ng-click="choosePictureAlbum('who')" class="ion-image ion-image-who"> </i>
+          <i ng-show="showSave.who" ng-click="takePicture('who')" class="ion-ios-refresh trashwho"></i>
+        </div>
+        <!-- Fin Image who -->
+      </div><!-- Fin both image -->
+
+      <!-- Valeurs -->
+      <div ng-if="showSave.what && showSave.who" style="position:absolute; top:5000px;">
+        <!-- Position --> <div class="position" style="opacity: 0">Latitude : {{ positionPic.lat }} - Longitude : {{ positionPic.lon }}</div>
+        <!-- Canvas --> <div style="opacity:0"><canvas id="myCanvas" style="width: 100%; height:auto;" height="600" width="300" drawing="{{picture}}"></canvas></div>
+      </div>
+
+      <!--<div class="bar bar-footer bar-stable"></div>-->
+    </div><!-- Fin list card -->
+
+    <script id="mention.html" type="text/ng-template">
+      <div class="modal">
+        <header class="bar bar-header bar-positive">
+          <h1 class="title">Mentions légales</h1>
+          <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+        </header>
+        <content has-header="true" padding="true">
+          <p style="top:8%; padding: 0 4%;position:absolute; font-size: 1.5rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem blanditiis cum fuga non sed tenetur ut voluptate? Accusantium architecto aut autem, dicta dolore enim eos harum ipsa laborum molestiae nemo non obcaecati odit officiis optio placeat quas quidem quos recusandae reprehenderit sed sequi similique tempora temporibus tenetur unde velit veniam vero voluptatem voluptates? Culpa dignissimos eaque in itaque, magni totam voluptas? Beatae dolore enim exercitationem incidunt magni minima nihil perspiciatis porro quo ullam. Accusantium aperiam autem corporis cum cupiditate dolorem doloremque, ex excepturi magni molestiae, natus nobis placeat ratione rem tempore ullam vel! Ab ipsa magnam quo.</p>
+        </content>
+      </div>
+    </script>
+
+    <script id="condition.html" type="text/ng-template">
+      <div class="modal">
+        <header class="bar bar-header bar-positive">
+          <h1 class="title">Conditions d'utilisation</h1>
+          <div class="button button-clear" ng-click="modall.hide()"><span class="icon ion-close"></span></div>
+        </header>
+        <content has-header="true" padding="true">
+          <p style="top:8%; padding: 0 4%;position:absolute; font-size: 1.5rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem blanditiis cum fuga non sed tenetur ut voluptate? Accusantium architecto aut autem, dicta dolore enim eos harum ipsa laborum molestiae nemo non obcaecati odit officiis optio placeat quas quidem quos recusandae reprehenderit sed sequi similique tempora temporibus tenetur unde velit veniam vero voluptatem voluptates? Culpa dignissimos eaque in itaque, magni totam voluptas? Beatae dolore enim exercitationem incidunt magni minima nihil perspiciatis porro quo ullam. Accusantium aperiam autem corporis cum cupiditate dolorem doloremque, ex excepturi magni molestiae, natus nobis placeat ratione rem tempore ullam vel! Ab ipsa magnam quo.</p>
+        </content>
+      </div>
+    </script>
+
+  </ion-content>
+</ion-view>
+
